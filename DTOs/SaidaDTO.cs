@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Saida
+namespace SaidaDTO
 {
   public class SaidaJson
   {
