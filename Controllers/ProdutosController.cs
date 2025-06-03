@@ -1,15 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
+using EntradaDTO;
 
 namespace Produtos.Controllers
 {
   [ApiController]
-  [Route("api/produtos")]
+  [Route("api/[controller]")]
   public class ProdutosController : ControllerBase
   {
     [HttpPost("teste")]
-    public IActionResult Teste()
+    public IActionResult Teste([FromBody] Entrada Pedi)
     {
-      return Ok(new { mensagem = "endpoint funcionando" });
+      var mensagens = Pedi.pedidos.Select(p => $"{p.pedido_id} é um dos pedidos").ToList();
+
+      return Ok(new { mensagens });
     }
   }
 }

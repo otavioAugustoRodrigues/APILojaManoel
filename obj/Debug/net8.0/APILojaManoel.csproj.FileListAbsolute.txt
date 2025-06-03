@@ -29,3 +29,4 @@ C:\Users\otavi\OneDrive\Área de Trabalho\Dev\APILojaManoel\obj\Debug\net8.0\ref
 C:\Users\otavi\OneDrive\Área de Trabalho\Dev\APILojaManoel\obj\Debug\net8.0\APILojaManoel.pdb
 C:\Users\otavi\OneDrive\Área de Trabalho\Dev\APILojaManoel\obj\Debug\net8.0\APILojaManoel.genruntimeconfig.cache
 C:\Users\otavi\OneDrive\Área de Trabalho\Dev\APILojaManoel\obj\Debug\net8.0\ref\APILojaManoel.dll
+C:\Users\otavi\OneDrive\Área de Trabalho\Dev\APILojaManoel\obj\Debug\net8.0\APILojaManoel.sourcelink.json
