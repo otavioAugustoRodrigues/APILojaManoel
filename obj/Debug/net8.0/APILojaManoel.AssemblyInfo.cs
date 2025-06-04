@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("APILojaManoel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce5a7bbe627ee2d1a312c55b96321b87c8c8f395")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19d10d3d0c559bb10291d05c7227d88189d34093")]
 [assembly: System.Reflection.AssemblyProductAttribute("APILojaManoel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("APILojaManoel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
