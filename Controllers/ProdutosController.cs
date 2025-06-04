@@ -9,6 +9,7 @@ namespace Produtos.Controllers
   [Route("api/[controller]")]
   public class ProdutosController : ControllerBase
   {
+
     private readonly ICalculaCaixaService _calculaCaixaService;
 
     public ProdutosController(ICalculaCaixaService calculaCaixaService)
@@ -17,9 +18,15 @@ namespace Produtos.Controllers
     }
 
     [HttpPost("teste")]
-    public IActionResult Principal([FromBody] Entrada Pedi)
+    public async Task<IActionResult> Principal([FromBody] Entrada Pedi)
     {
       var output = _calculaCaixaService.Funcaodesaida(Pedi);
+
+      foreach (var i in Pedi.pedidos)
+      {
+        await _calculaCaixaService.CriarProduto(i.caixa);
+      }
+
       return Ok(new { output });
     }
   }

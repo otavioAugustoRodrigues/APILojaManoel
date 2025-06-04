@@ -1,21 +1,35 @@
 using SaidaDTO;
 using EntradaDTO;
 using Pedidos.Model;
+using DbConnection.Data;
+using DbProdutos.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Calcula.Service
 {
   public class CalculaCaixaService : ICalculaCaixaService
   {
-    public CalculaCaixaService()
+    private readonly AppDbContext _context;
+
+    public CalculaCaixaService(AppDbContext context)
     {
+      _context = context;
     }
+
+    public async Task<DbProduto> CriarProduto(int caixa)
+    {
+      var novoProduto = new DbProduto { caixa = caixa };
+      _context.DbProdutos.Add(novoProduto);
+      await _context.SaveChangesAsync();
+      return novoProduto;
+    }
+
     public List<SaidaJson> Funcaodesaida(Entrada entrada)
     {
       var listOut = new List<SaidaJson>();
 
       foreach (var i in entrada.pedidos)
       {
-
         int defCaixa = DefineEmbalagem(i);
 
         if (defCaixa != 0)
@@ -45,7 +59,6 @@ namespace Calcula.Service
 
         var novaCaixa = new Caixa(caixa_nova, listprod);
 
-        // Supondo que SaidaJson precise de id_ped_novo, novaCaixa e obs
         var saidaItem = new SaidaJson(
             id_ped_novo,
             novaCaixa
@@ -58,8 +71,8 @@ namespace Calcula.Service
 
         listOut.Add(saidaItem);
       }
-      return listOut;
 
+      return listOut;
     }
 
     public int DefineEmbalagem(Pedido pedido)
@@ -78,6 +91,7 @@ namespace Calcula.Service
         if (prod.dimensoes.comprimento > compMax) compMax = prod.dimensoes.comprimento;
         if (prod.dimensoes.largura > largMax) largMax = prod.dimensoes.largura;
       }
+
       Console.Write($"{volume_t}");
 
       if (volume_t <= 96000 && altMax < 30 && largMax < 40 && compMax < 80)
@@ -97,7 +111,5 @@ namespace Calcula.Service
         return 0;
       }
     }
-
   }
-
 }
