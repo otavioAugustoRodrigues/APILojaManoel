@@ -1,0 +1,65 @@
+API Loja do Seu Manoel
+API ASP.NET Core para gerenciar pedidos e calcular embalagem ideal (caixas) para produtos, com persistência em banco SQL Server local.
+
+Tecnologias
+
+- .NET 8 (ASP.NET Core Web API)
+- Entity Framework Core
+- SQL Server local
+- VS Code + extensão SQL Server
+- Swagger (OpenAPI)
+
+Configuração do Banco de Dados
+
+- Instale o SQL Server local (ex: SQL Server Developer Edition ou SQL Server Express).
+- Crie o banco de dados chamado DBAPIManoel manualmente ou via comando SQL:
+
+CREATE DATABASE DBAPIManoel;
+Atualize a connection string no appsettings.json:
+
+"ConnectionStrings": {
+"DefaultConnection": "Server=localhost;Database=DBAPIManoel;Trusted_Connection=True;"
+}
+
+Como executar
+
+- Restaure os pacotes e compile o projeto:
+  dotnet restore
+  dotnet build
+- Aplique as migrations para criar as tabelas no banco:
+  dotnet ef database update
+- Execute a API localmente:
+  dotnet run
+
+- Acesse o Swagger para testar endpoints:
+  http://localhost:8000/swagger
+
+- Endpoints principais
+  POST /api/Produtos/teste
+
+Recebe um objeto Entrada com pedidos e produtos, calcula a embalagem ideal e salva no banco os produtos com caixa atribuída.
+
+Estrutura básica
+
+- Models: define entidades (ex: DbProduto)
+- Data: contexto EF Core AppDbContext
+- Services: lógica de negócio (CalculaCaixaService)
+- Controllers: rotas API (ProdutosController)
+
+Como funciona a criação do produto no banco
+
+- A cada execução do endpoint teste, a API:
+- alcula a caixa para cada pedido
+- Salva no banco uma linha na tabela DbProdutos com o id do pedido e o número da caixa
+- Retorna o resultado da operação via JSON
+
+Ferramentas recomendadas
+
+- VS Code com extensão SQL Server (mssql)
+- Postman ou Swagger UI para testar API
+
+Próximos passos
+
+- Implementar validações mais robustas
+- Criar testes unitários
+- Adicionar autenticação
